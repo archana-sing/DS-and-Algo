@@ -1,4 +1,4 @@
-let arr = [ 3, 5, 9, 2, 8, 10, 11 ];
+let arr = [ 3, 5, 9, 2, 8, 10, 11 ];//sorting required
 let sum = 17;
 let i = 0; 
 let j = arr.length -1;
