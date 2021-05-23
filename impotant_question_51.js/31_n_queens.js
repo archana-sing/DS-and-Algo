@@ -1,41 +1,72 @@
-let board = new Array(4);
-for(let i = 0 ; i < 4 ; i++){
-    board[i] = new Array(4).fill(0);
-}
-//console.log(board)
-let n = board.length
-let r = 0
- function is_safe(board , r ,col){
-     for(let i = 0 ; i < r ; i++){
-         if(board[i][col] === "Q"){
-            return false
-         }
-     }
-     for(let i = r , j = col ; i >= 0 && j >= 0 ; i-- , j--){
-         if(board[i][j] === "Q"){
-             return false
-         }
-     }
-     for(let i = r , j = 0 ; i >= 0 && j < col ; i-- , j++){
-         if(board[i][j] == "Q"){
-             return false
-         }
-     }
-     return true
- }
-function n_queens(board , n , r){
-    if(r == n){
-        return board
+//Enter code here
+let count = 0
+function is_safe(mat , r , c , n){
+    //console.log(mat)
+    for (let i = 0; i < r; i++){
+        if (mat[i][c] === 'Q') {
+                return 0;
+        }
     }
-    for(let col = 0 ; col < n ; col++){
-       if( is_safe(board , r , col)){
-           board[r][col] = "Q"
-           if(n_queens(board , n , r+1)){
-               return true
-           }
-           board[r][col] = 0
-       }
+    for(let i = r , j  = c ; i >= 0 && j >= 0 ; i-- , j--){
+        if(mat[i][j] === "Q"){
+            return 0
+        }
     }
-    return false
+    for(let i = r , j  = c ; i >= 0 && j < n ; i-- , j++){
+        //console.log(j)
+        if(mat[i][j] === "Q"){
+            return 0
+        }
+    }
+    return 1
 }
-console.log(n_queens(board , n , r))
+function n_Queens(matrix , r , n){
+    if(r === n){
+        //count++
+        console.log(matrix)
+        return
+    }
+    for(let i = 0 ; i < n ; i++){
+        if(is_safe(matrix , r , i , n)){
+            matrix[r][i] = "Q"
+            n_Queens(matrix , r+1 , n)
+            matrix[r][i] = 0
+        }
+    }
+
+}
+function runProgram(input){
+    // write code here
+    input = +input
+    let chessboard = []
+    for(let i = 0 ; i < input ; i++){
+        chessboard.push([])
+        for(let j = 0 ; j < input ; j++){
+            chessboard[i][j] = 0
+        }
+    } 
+    n_Queens(chessboard , row = 0 , input)
+    //console.log(chessboard)
+   }
+  if(process.env.USERNAME === "Archana"){
+      runProgram(`4`);
+  }
+  else{
+      process.stdin.resume();
+      process.stdin.setEncoding("ascii");
+      let read = "";
+      process.stdin.on("data", function (input) {
+          read += input;
+      });
+      process.stdin.on("end", function () {
+          read = read.replace(/\n$/,"")
+      runProgram(read);
+      });
+      process.on("SIGINT", function () {
+          read = read.replace(/\n$/,"")
+          runProgram(read);
+          process.exit(0);
+      }); 
+  }   
+ 
+ 

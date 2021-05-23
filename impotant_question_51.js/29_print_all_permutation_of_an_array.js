@@ -24,6 +24,23 @@ function generate_permutation(arr , l , r){
         arr[i] = t
     }
 }
+// function generate_permutations(arr , per , visited){
+//     if(per.length === arr.length){
+//         console.log(per.join(" "))
+//     }
+    
+//     for(let i = 0 ; i < arr.length ; i++){
+//        if(visited[i] === true){
+//            continue
+//        }
+//         per.push(arr[i])
+//         visited[i] = true
+//         generate_permutations(arr , per , visited)
+//         per.pop();
+//         visited[i] = false
+       
+//     }
+// }
 generate_permutation(arr , l , r)
 
 // 0 1 2
